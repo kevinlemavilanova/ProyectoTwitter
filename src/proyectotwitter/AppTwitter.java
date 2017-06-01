@@ -7,28 +7,22 @@ package proyectotwitter;
 
 import javax.swing.JOptionPane;
 import twitter4j.*;
-import twitter4j.conf.ConfigurationBuilder;
+import twitter4j.conf.Configuration;
 
 /**
  *
  * @author kevin
  */
 public class AppTwitter {
-
-    public Twitter twitter;
-
-    public void connect() {
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setDebugEnabled(true)
-                .setOAuthConsumerKey("h5QMQS9cq1YDXlgBSZFOoJnkz")
-                .setOAuthConsumerSecret("lCnodmJSIPHVhuxpZlnKe88TQDgwO9OGYCLpdR5gpVdKIiorCb")
-                .setOAuthAccessToken("843739695091802112-z9wPdDceVHCkzQT9xgfUcPyA3scb7b6")
-                .setOAuthAccessTokenSecret("1cygSjbP9gyZ0aGJep8sK2603tcZ6yaILM843nQpHdPaL");
-        TwitterFactory tf = new TwitterFactory(cb.build());
-        twitter = tf.getInstance();
-    }
-
+    TwitterFactory tf = new TwitterFactory();
+    Twitter twitter = tf.getInstance();
+    
+    
+    /**
+     * Muestra por consola el listado de tweets
+     */
     public void verTimeline() {
+        
         try {
             Paging pagina = new Paging();
             pagina.setCount(40);
@@ -41,6 +35,9 @@ public class AppTwitter {
         }
     }
 
+    /**
+     * Habre una ventana en la que podemos postear un tweet en nuestra cuenta
+     */
     public void postearTweet() {
         try {
             twitter.updateStatus(JOptionPane.showInputDialog("Mensaje para twittear"));
@@ -48,7 +45,10 @@ public class AppTwitter {
             System.out.println("Error post");
         }
     }
-
+/**
+ * recibe un texto por el cual busca en twiter
+ * @param text 
+ */
     public void buscar(String text) {
         try {
             Query query = new Query("#" + text);
@@ -60,7 +60,11 @@ public class AppTwitter {
             System.out.println("Error al buscar");
         }
     }
-
+/**
+ * Recibe un usaurio y el mensaje para ese usuario y s elo envia directamente 
+ * @param user
+ * @param msg 
+ */
     public void mensajeDirecto(String user, String msg) {
         DirectMessage message;
         try {

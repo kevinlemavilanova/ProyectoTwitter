@@ -16,7 +16,6 @@ public class ProyectoTwitter {
      */
     public static void main(String[] args) {
         AppTwitter tw = new AppTwitter();
-        tw.connect();
         tw.verTimeline();
         tw.postearTweet();
     }
