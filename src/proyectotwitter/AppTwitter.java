@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+
 package proyectotwitter;
 
 import javax.swing.JOptionPane;
@@ -14,9 +14,8 @@ import twitter4j.conf.Configuration;
  * @author kevin
  */
 public class AppTwitter {
-    TwitterFactory tf = new TwitterFactory();
     Twitter twitter = tf.getInstance();
-    
+    User user = twitter.verifyCredentials();
     
     /**
      * Muestra por consola el listado de tweets
