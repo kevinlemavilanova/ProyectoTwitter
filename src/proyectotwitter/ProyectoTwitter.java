@@ -5,6 +5,8 @@
  */
 package proyectotwitter;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kevin
@@ -16,9 +18,29 @@ public class ProyectoTwitter {
      */
     public static void main(String[] args) {
         AppTwitter tw = new AppTwitter();
+        Boolean seguir = true;
         tw.connect();
-        tw.verTimeline();
-        tw.postearTweet();
+
+        String option = JOptionPane.showInputDialog("Seleccione un opcion: "
+                + "\n a. Ver time line"
+                + "\n b. Buscar"
+                + "\n c. Twittear"
+                + "\n d. Salir"
+        );
+        switch (option) {
+            case "a":
+                tw.verTimeline();
+                break;
+            case "b":
+                tw.buscar("text");
+                break;
+            case "c":
+                tw.postearTweet();
+                break;
+            case "d":
+                seguir = false;
+                break;
+        }
+        while (seguir == true);
     }
-    
 }
